@@ -1,35 +1,35 @@
-# Ethereum accounts
+# Moac accounts
 
-Provides you with an `EthAccounts` collection, where balances are automatically updated.
+Provides you with an `Mcccounts` collection, where balances are automatically updated.
 Additionally the accounts are persisted in localstorage.
 
-If the ethereum node removes accounts,
-the `EthAccounts` collection will set the `deactivated: true` property to these accounts and hide them from normal queries.
+If the moac node removes accounts,
+the `McAccounts` collection will set the `deactivated: true` property to these accounts and hide them from normal queries.
 
 If the Accounts should reapear in the node (e.g. the user importet those, or mist allwed them access), they will be available again,
 including all the extra properties you've set.
 
-**Note** don't use the `EthAccounts` collection to add your own custom accounts as a reload of your application,
-or any change in `web3.eth.accounts` would hide them.
+**Note** don't use the `McAccounts` collection to add your own custom accounts as a reload of your application,
+or any change in `web3.mc.accounts` would hide them.
 
 ## Installation
 
-    $ meteor add ethereum:accounts
+    $ meteor add moac:accounts
 
 ## Usage
 
-Initialize Accounts on the start of your application, as soon as you have a ethereum connection:
+Initialize Accounts on the start of your application, as soon as you have a moac connection:
 
 ```js
-EthAccounts.init();
+McAccounts.init();
 ```
 
-Then simply use the global `EthAccounts` object like any other minimongo collection.
+Then simply use the global `McAccounts` object like any other minimongo collection.
 It provides the `.find()`, `.findOne()`, `.findAll()`, `.update()`, `.updateAll()` and `.remove()` functions e.g.:
 
 ```js
 // Get all active accounts
-var myAccounts = EthAccounts.find().fetch();
+var myAccounts = McAccounts.find().fetch();
 
 [
   {
@@ -41,13 +41,13 @@ var myAccounts = EthAccounts.find().fetch();
 ]
 
 // or
-var myPrimaryAccount = EthAccounts.findOne({name: 'Coinbase'});
+var myPrimaryAccount = McAccounts.findOne({name: 'Coinbase'});
 ```
 
 #### If you want to get truly all accounts including the deactivated ones use:
 
 ```js
-var allAccounts = EthAccounts.findAll().fetch();
+var allAccounts = McAccounts.findAll().fetch();
 
 [
   {
@@ -70,11 +70,11 @@ var allAccounts = EthAccounts.findAll().fetch();
 #### If you want to update a deactivated account use:
 
 ```js
-EthAccounts.updateAll({address: "0x990ccf8a0de58091c028d6ff76bb235ee67c1c39"}, {name: 'XYZ'}});
+McAccounts.updateAll({address: "0x990ccf8a0de58091c028d6ff76bb235ee67c1c39"}, {name: 'XYZ'}});
 ```
 
 #### If you manually want to activate an account to make it visible call:
 
 ```js
-EthAccounts.updateAll({address: "0x990ccf8a0de58091c028d6ff76bb235ee67c1c39"}, {$unset: {deactivated: ''}})
+McAccounts.updateAll({address: "0x990ccf8a0de58091c028d6ff76bb235ee67c1c39"}, {$unset: {deactivated: ''}})
 ```
