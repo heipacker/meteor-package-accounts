@@ -134,7 +134,7 @@ McAccounts._addAccounts = function(){
                                 type: 'account',
                                 address: address,
                                 balance: balance,
-                                name: (address === coinbase) ? 'Main account (Etherbase)' : 'Account '+ accountsCount
+                                name: (address === coinbase) ? 'Main account (Moacbase)' : 'Account '+ accountsCount
                             };
 
                             if(doc) {
